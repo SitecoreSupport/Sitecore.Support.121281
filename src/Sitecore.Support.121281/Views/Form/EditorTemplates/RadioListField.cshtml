@@ -1,0 +1,26 @@
+﻿@using Sitecore.Forms.Mvc.Html
+@using Sitecore.Forms.Mvc.ViewModels.Fields
+@model RadioListField
+
+@using (Html.BeginField())
+{
+    foreach (var item in Model.Items)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param["id"] = 'r' + Guid.NewGuid().ToString();
+
+        if (item.Selected)
+        {
+            param["Checked"] = "checked";
+        }
+
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(x => Model.Value, item.Value, param)
+
+                @item.Text
+            </label>
+        </div>
+
+    }
+}
